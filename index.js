@@ -1,21 +1,25 @@
 async function buscarPorNombre(){
     const loader =  document.getElementById("loader")
-
-    try{
     loader.style.display = "block"
+    
+    try{
     const res = await fetch(`http://www.omdbapi.com/?s=${document.getElementById("nombre").value}&apikey=f2885c6e`) 
     const obj = await res.json()
-    const search = obj.Search
-
     loader.style.display = "none"
 
+    const search = obj.Search
     let html = ""
     for(let i = 0; i < search.length; i++){
-        html += `<div><h2>${search[i].Title}</h2><h2>${search[i].Year}</h2><h4>${search[i].Year}</h4></div>`
+        html += `<div><h2>${search[i].Title}</h2><h2>${search[i].Year}</h2><h4>${search[i].Year}</h4><button onClick = "mostrarPelicula" type = "button">Expandir</button></div>`
     }
-    document.getElementById("listaObj").innerHTML = html
-
     
+    if(html == "")
+    {
+        document.getElementById("listaObj").innerHTML = "<h1>Error al cargar búsqueda</h1>"
+    } else {
+        document.getElementById("listaObj").innerHTML = html
+    }
+
     }
     catch (error) {
         console.error('Error', error)

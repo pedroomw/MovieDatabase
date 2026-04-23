@@ -54,4 +54,12 @@ p {
 
 div {
     margin-bottom:30px;
+    margin-left: 25%;
+    margin-right: 25%;
+    border: 2px solid blue;
+    width: 50%;
+}
+
+div button {
+    margin-bottom: 3px;
 }
