@@ -10,7 +10,12 @@ async function buscarPorNombre(){
     const search = obj.Search
     let html = ""
     for(let i = 0; i < search.length; i++){
-        html += `<div><h2>${search[i].Title}</h2><h2>${search[i].Year}</h2><h4>${search[i].Year}</h4><button onClick = "mostrarPelicula" type = "button">Expandir</button></div>`
+        html += `<div>
+                <h2>${search[i].Title}</h2>
+                <h2>${search[i].Year}</h2>
+                <h4>${search[i].imdbID}</h4>
+                <button onClick = mostrarPelicula("${search[i].imdbID}") type = "button">Expandir</button>
+                </div>`
     }
     
     if(html == "")
@@ -24,8 +29,7 @@ async function buscarPorNombre(){
     catch (error) {
         console.error('Error', error)
         loader.style.display = "block"
-        loader.innerHTML = "Error"
-        document.getElementById("imagen").src = "https://cdn-icons-png.flaticon.com/512/103/103085.png"
+        loader.innerHTML = "Pelicula/serie no encontrada"
     }
 
 }
